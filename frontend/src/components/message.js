@@ -13,10 +13,14 @@ export default function Message() {
       console.log(e);
     }
   };
-  
 
   useEffect(() => {
     message();
   }, []);
-  return <div>{result}</div>;
+  return (
+    <div>
+      <h1>Results:</h1>
+      {result}
+    </div>
+  );
 }

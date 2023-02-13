@@ -14,15 +14,22 @@ table = dynamodb.Table('memorex-staging')
 
 
 
-response = table.query(
-    KeyConditionExpression=Key('PK').eq('COMP#0')
+# response = table.query(
+#     KeyConditionExpression=Key('PK').eq('COMP#0')
+# )
+
+response = table.get_item(
+   Key={
+      'PK': 'COMP#0',
+      'SK': 'COMP#0'
+   }
 )
 
-data = str(response['Items'])
+data = str(response['Item']['companyEmail'])
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins="http://localhost:3000/",
+    allow_origins="http://localhost:3001/",
     allow_credentials=True,
     allow_methods=["GET"],
     allow_headers=["Content-Type","application/xml"],
